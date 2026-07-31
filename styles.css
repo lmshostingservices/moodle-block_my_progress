@@ -1,0 +1,1242 @@
+/* =====================================================
+   MY PROGRESS BLOCK - Aligned with AI Quick Links Design
+   Design System: EssayGrader AI Premium SaaS Theme
+   Bootstrap 4/5 Compatible | Moodle 4.1 - 5.0
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+
+/* ============================================================
+   DESIGN TOKENS - Matches AI Quick Links / AI Dashboard exactly
+   ============================================================ */
+.mp-container {
+    /* Primary Colors - Inherits from Moodle theme */
+    --mp-primary: var(--primary, #3b82f6);
+    --mp-primary-hover: color-mix(in srgb, var(--primary, #3b82f6) 85%, black);
+    --mp-primary-light: color-mix(in srgb, var(--primary, #3b82f6) 10%, white);
+    
+    /* Semantic Colors */
+    --mp-success: #16a34a;
+    --mp-success-light: #dcfce7;
+    --mp-warning: #ea580c;
+    --mp-warning-light: #fed7aa;
+    --mp-danger: #dc2626;
+    --mp-danger-light: #fee2e2;
+    --mp-not-started: #f43f5e;
+    --mp-not-started-light: #ffe4e6;
+    
+    /* Neutral Colors */
+    --mp-text: #374151;
+    --mp-text-muted: #6b7280;
+    --mp-text-tertiary: #9ca3af;
+    --mp-border: #e5e7eb;
+    --mp-bg: #f9fafb;
+    --mp-card-bg: #ffffff;
+    
+    /* Border Radius */
+    --mp-radius-sm: 6px;
+    --mp-radius: 8px;
+    --mp-radius-lg: 10px;
+    --mp-radius-xl: 12px;
+    
+    /* Shadows */
+    --mp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --mp-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --mp-shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    
+    /* Transitions */
+    --mp-transition: 0.15s ease;
+    
+    /* Typography - Matches essaygraderai.app */
+    --mp-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --mp-font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Consolas', monospace;
+    
+    font-family: var(--mp-font);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--mp-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Use default Moodle block styling - no custom background/border/shadow */
+}
+
+/* ============================================================
+   CONTENT AREA
+   ============================================================ */
+.mp-content {
+    padding: 12px;
+}
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+.mp-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 32px 16px;
+    text-align: center;
+    color: var(--mp-text-muted);
+}
+
+.mp-empty-icon {
+    width: 48px;
+    height: 48px;
+    stroke: var(--mp-text-tertiary);
+    stroke-width: 1.5;
+}
+
+.mp-empty-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--mp-text-muted);
+    margin: 0;
+}
+
+/* ============================================================
+   CONTROLS - Filter, Sort, Collapse/Expand
+   Matches Quick Links button styling
+   ============================================================ */
+.mp-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.mp-control-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background-color: var(--mp-bg);
+    border: 1px solid var(--mp-border);
+    border-radius: var(--mp-radius);
+    color: var(--mp-text);
+    font-family: var(--mp-font);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--mp-transition);
+    white-space: nowrap;
+}
+
+.mp-control-btn:hover {
+    background-color: var(--mp-primary-light);
+    border-color: color-mix(in srgb, var(--mp-primary) 30%, var(--mp-border));
+    color: var(--mp-primary);
+}
+
+.mp-control-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--mp-primary), 0 0 0 4px color-mix(in srgb, var(--mp-primary) 30%, transparent);
+}
+
+.mp-control-btn.mp-active {
+    background-color: var(--mp-primary-light);
+    border-color: var(--mp-primary);
+    color: var(--mp-primary);
+}
+
+.mp-control-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/* Collapse/Expand All Buttons */
+.mp-toggle-btns {
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.mp-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    background-color: transparent;
+    border: 1px solid var(--mp-border);
+    border-radius: var(--mp-radius);
+    color: var(--mp-text-muted);
+    font-family: var(--mp-font);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--mp-transition);
+}
+
+.mp-toggle-btn:hover {
+    background-color: var(--mp-bg);
+    color: var(--mp-text);
+    border-color: var(--mp-text-tertiary);
+}
+
+.mp-toggle-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ============================================================
+   SEARCH BOX
+   ============================================================ */
+.mp-search-box {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.mp-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    stroke: var(--mp-text-muted);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.mp-search-input {
+    width: 100%;
+    padding: 10px 12px 10px 38px;
+    background-color: var(--mp-bg);
+    border: 1px solid var(--mp-border);
+    border-radius: var(--mp-radius);
+    color: var(--mp-text);
+    font-family: var(--mp-font);
+    font-size: 14px;
+    font-weight: 400;
+    transition: all var(--mp-transition);
+}
+
+.mp-search-input::placeholder {
+    color: var(--mp-text-tertiary);
+}
+
+.mp-search-input:hover {
+    border-color: var(--mp-text-tertiary);
+}
+
+.mp-search-input:focus {
+    outline: none;
+    border-color: var(--mp-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--mp-primary) 20%, transparent);
+}
+
+/* ============================================================
+   FILTER LABELS - Pill-style filter buttons
+   ============================================================ */
+.mp-filter-labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.mp-filter-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: var(--mp-bg);
+    border: 1px solid var(--mp-border);
+    border-radius: 20px;
+    color: var(--mp-text-muted);
+    font-family: var(--mp-font);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--mp-transition);
+    white-space: nowrap;
+}
+
+.mp-filter-label:hover {
+    background-color: var(--mp-primary-light);
+    border-color: color-mix(in srgb, var(--mp-primary) 30%, var(--mp-border));
+    color: var(--mp-primary);
+}
+
+.mp-filter-label.mp-filter-active {
+    background-color: var(--mp-primary);
+    border-color: var(--mp-primary);
+    color: white;
+}
+
+.mp-filter-label.mp-filter-active:hover {
+    background-color: var(--mp-primary-hover);
+    border-color: var(--mp-primary-hover);
+    color: white;
+}
+
+/* Color-coded filter labels when not active */
+.mp-filter-completed:not(.mp-filter-active) {
+    border-color: color-mix(in srgb, var(--mp-success) 30%, var(--mp-border));
+}
+
+.mp-filter-completed:not(.mp-filter-active):hover {
+    background-color: var(--mp-success-light);
+    border-color: var(--mp-success);
+    color: var(--mp-success);
+}
+
+.mp-filter-inprogress:not(.mp-filter-active) {
+    border-color: color-mix(in srgb, var(--mp-warning) 30%, var(--mp-border));
+}
+
+.mp-filter-inprogress:not(.mp-filter-active):hover {
+    background-color: var(--mp-warning-light);
+    border-color: var(--mp-warning);
+    color: var(--mp-warning);
+}
+
+.mp-filter-notstarted:not(.mp-filter-active) {
+    border-color: color-mix(in srgb, var(--mp-not-started) 30%, var(--mp-border));
+}
+
+.mp-filter-notstarted:not(.mp-filter-active):hover {
+    background-color: var(--mp-not-started-light);
+    border-color: var(--mp-not-started);
+    color: var(--mp-not-started);
+}
+
+/* ============================================================
+   SORT LABELS - Inline sort options
+   ============================================================ */
+.mp-sort-labels {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.mp-sort-label-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--mp-text-muted);
+}
+
+.mp-sort-label {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--mp-radius);
+    color: var(--mp-text-muted);
+    font-family: var(--mp-font);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--mp-transition);
+}
+
+.mp-sort-label:hover {
+    background-color: var(--mp-bg);
+    color: var(--mp-text);
+}
+
+.mp-sort-label.mp-sort-active {
+    background-color: var(--mp-primary-light);
+    border-color: var(--mp-primary);
+    color: var(--mp-primary);
+}
+
+/* ============================================================
+   SELECT DROPDOWNS - Matches Quick Links styling
+   ============================================================ */
+.mp-select {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    padding-right: 32px;
+    background-color: var(--mp-bg);
+    border: 1px solid var(--mp-border);
+    border-radius: var(--mp-radius);
+    color: var(--mp-text);
+    font-family: var(--mp-font);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--mp-transition);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+.mp-select:hover {
+    background-color: var(--mp-primary-light);
+    border-color: color-mix(in srgb, var(--mp-primary) 30%, var(--mp-border));
+}
+
+.mp-select:focus {
+    outline: none;
+    border-color: var(--mp-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--mp-primary) 20%, transparent);
+}
+
+/* ============================================================
+   CATEGORY SECTIONS - Collapsible groups
+   ============================================================ */
+.mp-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mp-category {
+    background-color: var(--mp-card-bg);
+    border: 1px solid var(--mp-border);
+    border-radius: var(--mp-radius);
+    overflow: hidden;
+    transition: box-shadow var(--mp-transition);
+}
+
+.mp-category:hover {
+    box-shadow: var(--mp-shadow-sm);
+}
+
+.mp-category-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background-color: var(--mp-bg);
+    border-bottom: 1px solid var(--mp-border);
+    cursor: pointer;
+    transition: background-color var(--mp-transition);
+    user-select: none;
+}
+
+.mp-category-header:hover {
+    background-color: color-mix(in srgb, var(--mp-primary) 5%, var(--mp-bg));
+}
+
+.mp-category.mp-collapsed .mp-category-header {
+    border-bottom: none;
+}
+
+.mp-category-chevron {
+    width: 16px;
+    height: 16px;
+    stroke: var(--mp-text-muted);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.mp-category.mp-collapsed .mp-category-chevron {
+    transform: rotate(-90deg);
+}
+
+.mp-category-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--mp-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Category course count badge */
+.mp-category-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    background-color: var(--mp-border);
+    border-radius: 11px;
+    font-family: var(--mp-font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--mp-text-muted);
+    flex-shrink: 0;
+}
+
+/* Category status indicator circle with remaining count */
+.mp-category-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-left: auto;
+    font-family: var(--mp-font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    padding-bottom: 1px;
+    cursor: help;
+}
+
+.mp-cat-complete {
+    background-color: var(--mp-success-light);
+    border: 0.5px solid #16a34a;
+    color: #15803d;
+}
+
+/* Green tick for fully completed categories */
+.mp-cat-tick {
+    width: 14px;
+    height: 14px;
+    stroke: #15803d;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.mp-cat-in-progress {
+    background-color: #dbeafe;
+    border: 0.5px solid #3b82f6;
+    color: #1e40af;
+}
+
+.mp-cat-not-started {
+    background-color: var(--mp-not-started-light);
+    border: 0.5px solid #f43f5e;
+    color: #be123c;
+}
+
+.mp-category-content {
+    padding: 8px;
+    display: block;
+}
+
+.mp-category.mp-collapsed .mp-category-content {
+    display: none;
+}
+
+/* ============================================================
+   COURSE CARDS - Matches Quick Links tool cards
+   ============================================================ */
+.mp-courses {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Course card - single card with everything inside */
+.mp-course {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background-color: var(--mp-card-bg);
+    border: 0.5px solid var(--mp-border);
+    border-radius: var(--mp-radius-sm);
+    transition: all var(--mp-transition);
+    text-decoration: none;
+    color: inherit;
+}
+
+.mp-course:hover {
+    background-color: var(--mp-primary-light);
+    border: 0.5px solid color-mix(in srgb, var(--mp-primary) 30%, var(--mp-border));
+    text-decoration: none;
+}
+
+.mp-course:focus,
+.mp-course:focus-visible {
+    outline: none;
+    border: 0.5px solid var(--mp-primary);
+}
+
+.mp-course-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--mp-primary-light);
+    border-radius: var(--mp-radius-sm);
+}
+
+.mp-course-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--mp-primary);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.mp-course-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.mp-course-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--mp-text);
+    margin: 0 0 4px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mp-course-meta {
+    font-size: 13px;
+    color: var(--mp-text-muted);
+    line-height: 1.5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+}
+
+/* Date items in course meta */
+.mp-date-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mp-date-label {
+    font-weight: 500;
+    color: var(--mp-text-tertiary);
+}
+
+.mp-date-completed {
+    color: var(--mp-success);
+}
+
+.mp-date-completed .mp-date-label {
+    color: color-mix(in srgb, var(--mp-success) 70%, var(--mp-text-tertiary));
+}
+
+.mp-date-overdue {
+    color: var(--mp-danger);
+}
+
+.mp-date-overdue .mp-date-label {
+    color: color-mix(in srgb, var(--mp-danger) 70%, var(--mp-text-tertiary));
+}
+
+.mp-course:hover .mp-course-name {
+    color: var(--mp-primary);
+}
+
+/* ============================================================
+   PROGRESS INDICATOR - Circular + Bar
+   ============================================================ */
+.mp-progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* Circular Progress */
+.mp-progress-circle {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+}
+
+.mp-progress-circle svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.mp-progress-bg {
+    fill: none;
+    stroke: var(--mp-border);
+    stroke-width: 2;
+}
+
+.mp-progress-fill {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+/* Progress color states */
+.mp-progress-fill.mp-complete {
+    stroke: var(--mp-success);
+}
+
+.mp-progress-fill.mp-in-progress {
+    stroke: var(--mp-primary);
+}
+
+.mp-progress-fill.mp-not-started {
+    stroke: var(--mp-not-started);
+}
+
+.mp-progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--mp-font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--mp-text);
+}
+
+/* Progress Bar (alternative display) */
+.mp-progress-bar-wrapper {
+    flex: 1;
+    min-width: 80px;
+    max-width: 120px;
+}
+
+.mp-progress-bar-track {
+    width: 100%;
+    height: 6px;
+    background-color: var(--mp-border);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.mp-progress-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+.mp-progress-bar-fill.mp-complete {
+    background-color: var(--mp-success);
+}
+
+.mp-progress-bar-fill.mp-in-progress {
+    background-color: var(--mp-primary);
+}
+
+.mp-progress-bar-fill.mp-not-started {
+    background-color: var(--mp-not-started);
+}
+
+.mp-progress-label {
+    font-family: var(--mp-font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--mp-text-muted);
+    margin-top: 4px;
+    text-align: right;
+}
+
+/* ============================================================
+   INLINE ACTIVITY CIRCLES - Inside course card
+   ============================================================ */
+.mp-activities-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    margin-top: 6px;
+}
+
+/* Inline Progress Bar - Inside course card */
+.mp-progress-bar-inline {
+    margin-top: 8px;
+}
+
+.mp-progress-bar-inline .mp-progress-bar-track {
+    width: 100%;
+    height: 2px;
+    background-color: var(--mp-border);
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.mp-activity-dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 0.5px solid transparent;
+    transition: transform 0.15s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.mp-activity-dot:hover {
+    transform: scale(1.1);
+}
+
+.mp-activity-dot svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Complete - Green circle with checkmark */
+.mp-dot-complete {
+    background-color: var(--mp-success);
+    border: 0.5px solid var(--mp-success);
+}
+
+.mp-dot-complete svg {
+    stroke: #ffffff;
+}
+
+/* Failed - Red circle with X */
+.mp-dot-failed {
+    background-color: var(--mp-danger);
+    border: 0.5px solid var(--mp-danger);
+}
+
+.mp-dot-failed svg {
+    stroke: #ffffff;
+}
+
+/* Pending - Light red circle */
+.mp-dot-pending {
+    background-color: var(--mp-not-started-light);
+    border: 0.5px solid var(--mp-not-started);
+}
+
+.mp-dot-pending svg {
+    stroke: var(--mp-not-started);
+}
+
+.mp-dot-pending:hover {
+    border: 0.5px solid var(--mp-not-started);
+}
+
+/* More indicator */
+.mp-activity-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--mp-text-muted);
+    background-color: var(--mp-card-bg);
+    border: 1px solid var(--mp-border);
+    border-radius: 12px;
+}
+
+
+/* ============================================================
+   STATUS BADGES - Matches Quick Links badges
+   ============================================================ */
+.mp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.mp-badge-complete {
+    background-color: var(--mp-success-light);
+    color: #166534;
+    border: 1px solid #86efac;
+}
+
+.mp-badge-in-progress {
+    background-color: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #93c5fd;
+}
+
+.mp-badge-not-started {
+    background-color: var(--mp-bg);
+    color: var(--mp-text-muted);
+    border: 1px solid var(--mp-border);
+}
+
+.mp-badge svg {
+    width: 12px;
+    height: 12px;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
+/* ============================================================
+   SUMMARY STATS - Quick overview
+   ============================================================ */
+.mp-summary {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.mp-summary-stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    background-color: var(--mp-card-bg);
+    border: 1px solid var(--mp-border);
+    border-radius: var(--mp-radius);
+    flex: 1;
+    min-width: 100px;
+}
+
+.mp-summary-stat.mp-stat-complete {
+    background-color: var(--mp-success-light);
+    border-color: #86efac;
+}
+
+.mp-summary-stat.mp-stat-in-progress {
+    background-color: #dbeafe;
+    border-color: #93c5fd;
+}
+
+.mp-summary-stat.mp-stat-not-started {
+    background-color: var(--mp-not-started-light);
+    border-color: #fda4af;
+}
+
+.mp-stat-number {
+    font-family: var(--mp-font-mono);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.mp-stat-complete .mp-stat-number {
+    color: #166534;
+}
+
+.mp-stat-in-progress .mp-stat-number {
+    color: #1e40af;
+}
+
+.mp-stat-not-started .mp-stat-number {
+    color: #be123c;
+}
+
+.mp-stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+
+.mp-stat-complete .mp-stat-label {
+    color: #166534;
+}
+
+.mp-stat-in-progress .mp-stat-label {
+    color: #1e40af;
+}
+
+.mp-stat-not-started .mp-stat-label {
+    color: #be123c;
+}
+
+/* ============================================================
+   MOTIVATIONAL FEEDBACK
+   ============================================================ */
+.mp-motivation {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background-color: var(--mp-primary-light);
+    border: 1px solid color-mix(in srgb, var(--mp-primary) 20%, transparent);
+    border-radius: var(--mp-radius);
+    margin-bottom: 16px;
+}
+
+.mp-motivation-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--mp-primary);
+    border-radius: 50%;
+}
+
+.mp-motivation-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: #ffffff;
+    stroke-width: 2;
+}
+
+.mp-motivation-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--mp-primary);
+    line-height: 1.4;
+}
+
+/* ============================================================
+   ACTIVITY LIST (Inside courses)
+   ============================================================ */
+.mp-activities {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+    padding-left: 52px;
+}
+
+.mp-activity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: var(--mp-radius-sm);
+    transition: background-color var(--mp-transition);
+}
+
+.mp-activity:hover {
+    background-color: var(--mp-bg);
+}
+
+.mp-activity-icon {
+    width: 16px;
+    height: 16px;
+    stroke: var(--mp-text-muted);
+    stroke-width: 2;
+    flex-shrink: 0;
+}
+
+.mp-activity-name {
+    flex: 1;
+    font-size: 13px;
+    color: var(--mp-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mp-activity-status {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.mp-activity-status.mp-complete svg {
+    stroke: var(--mp-success);
+}
+
+.mp-activity-status.mp-incomplete svg {
+    stroke: var(--mp-text-tertiary);
+}
+
+/* ============================================================
+   ICON BASE STYLES - Matches Quick Links icon system
+   ============================================================ */
+.mp-icon {
+    width: 18px;
+    height: 18px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.mp-icon-sm {
+    width: 16px;
+    height: 16px;
+}
+
+.mp-icon-lg {
+    width: 24px;
+    height: 24px;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+@media (max-width: 768px) {
+    .mp-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 16px;
+    }
+    
+    .mp-header-title {
+        justify-content: center;
+    }
+    
+    .mp-header-badge {
+        align-self: center;
+    }
+    
+    .mp-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .mp-toggle-btns {
+        margin-left: 0;
+        justify-content: center;
+    }
+    
+    .mp-summary {
+        flex-direction: column;
+    }
+    
+    .mp-summary-stat {
+        min-width: 100%;
+    }
+    
+    .mp-course {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .mp-progress-wrapper {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .mp-stat-number {
+        font-size: 20px;
+    }
+}
+
+/* ============================================================
+   DARK MODE SUPPORT
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+    .mp-container {
+        --mp-text: #e5e7eb;
+        --mp-text-muted: #9ca3af;
+        --mp-text-tertiary: #6b7280;
+        --mp-border: #374151;
+        --mp-bg: #1f2937;
+        --mp-card-bg: #111827;
+        --mp-success-light: rgba(22, 163, 74, 0.15);
+        --mp-primary-light: rgba(59, 130, 246, 0.15);
+        background-color: #1f2937;
+    }
+    
+    .mp-category-header {
+        background-color: #1f2937;
+    }
+    
+    .mp-category-header:hover {
+        background-color: #374151;
+    }
+    
+    .mp-course:hover {
+        background-color: #1f2937;
+    }
+    
+    .mp-summary-stat.mp-stat-complete {
+        background-color: rgba(22, 163, 74, 0.15);
+        border-color: rgba(134, 239, 172, 0.3);
+    }
+    
+    .mp-summary-stat.mp-stat-in-progress {
+        background-color: rgba(59, 130, 246, 0.15);
+        border-color: rgba(147, 197, 253, 0.3);
+    }
+    
+    .mp-badge-complete {
+        background-color: rgba(22, 163, 74, 0.2);
+        border-color: rgba(134, 239, 172, 0.4);
+        color: #86efac;
+    }
+    
+    .mp-badge-in-progress {
+        background-color: rgba(59, 130, 246, 0.2);
+        border-color: rgba(147, 197, 253, 0.4);
+        color: #93c5fd;
+    }
+    
+    .mp-select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    }
+}
+
+/* Explicit dark mode classes for Moodle */
+body.dark .mp-container,
+body[data-bs-theme="dark"] .mp-container,
+.dark .mp-container {
+    --mp-text: #e5e7eb;
+    --mp-text-muted: #9ca3af;
+    --mp-text-tertiary: #6b7280;
+    --mp-border: #374151;
+    --mp-bg: #1f2937;
+    --mp-card-bg: #111827;
+    background-color: #1f2937;
+}
+
+/* ============================================================
+   MOODLE THEME COMPATIBILITY
+   Uses default Moodle block styling
+   ============================================================ */
+/* Let Moodle's default block styling apply - no overrides */
+
+/* Ensure proper display in Moodle's block regions */
+.block.block_my_progress {
+    margin-bottom: 1rem;
+}
+
+.block.block_my_progress .block-content {
+    padding: 0;
+}
+
+/* Dashboard compatibility */
+.pagelayout-mydashboard .block_my_progress .mp-container,
+.pagelayout-admin .block_my_progress .mp-container {
+    max-width: 100%;
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    .mp-container,
+    .mp-container * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Focus states for keyboard navigation */
+.mp-course:focus,
+.mp-category-header:focus,
+.mp-control-btn:focus,
+.mp-toggle-btn:focus {
+    outline: 2px solid var(--mp-primary);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+    .mp-progress-fill,
+    .mp-progress-bar-fill {
+        forced-color-adjust: none;
+    }
+}

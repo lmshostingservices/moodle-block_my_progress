@@ -1,0 +1,216 @@
+{{!
+    My Progress block template.
+    Design: Matches AI Quick Links block styling
+
+    @package    block_my_progress
+    @copyright  2025 AI Grader <support@aigrader.io>
+    @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+}}
+<div class="mp-container" data-region="my-progress">
+    <div class="mp-content">
+        {{^hascourses}}
+        <div class="mp-empty">
+            <svg class="mp-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <p class="mp-empty-text">{{#str}}nocourses, block_my_progress{{/str}}</p>
+        </div>
+        {{/hascourses}}
+
+        {{#hascourses}}
+        {{! Summary Stats }}
+        <div class="mp-summary">
+            <div class="mp-summary-stat mp-stat-complete">
+                <span class="mp-stat-number">{{completedcount}}</span>
+                <span class="mp-stat-label">{{#str}}completed, block_my_progress{{/str}}</span>
+            </div>
+            <div class="mp-summary-stat mp-stat-in-progress">
+                <span class="mp-stat-number">{{inprogresscount}}</span>
+                <span class="mp-stat-label">{{#str}}inprogress, block_my_progress{{/str}}</span>
+            </div>
+            <div class="mp-summary-stat mp-stat-not-started">
+                <span class="mp-stat-number">{{notstartedcount}}</span>
+                <span class="mp-stat-label">{{#str}}notstarted, block_my_progress{{/str}}</span>
+            </div>
+        </div>
+
+        {{! Search Box }}
+        <div class="mp-search-box">
+            <svg class="mp-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <input type="text" class="mp-search-input" data-action="search-course" placeholder="{{#str}}searchcourse, block_my_progress{{/str}}">
+        </div>
+
+        {{! Filter Labels }}
+        <div class="mp-filter-labels">
+            <button type="button" class="mp-filter-label mp-filter-active" data-filter="all">
+                {{#str}}filterall, block_my_progress{{/str}}
+            </button>
+            <button type="button" class="mp-filter-label mp-filter-completed" data-filter="completed">
+                {{#str}}filtercompleted, block_my_progress{{/str}}
+            </button>
+            <button type="button" class="mp-filter-label mp-filter-inprogress" data-filter="inprogress">
+                {{#str}}filterinprogress, block_my_progress{{/str}}
+            </button>
+            <button type="button" class="mp-filter-label mp-filter-notstarted" data-filter="notstarted">
+                {{#str}}filternotstarted, block_my_progress{{/str}}
+            </button>
+        </div>
+
+        {{! Sort and Toggle Controls }}
+        <div class="mp-controls">
+            <div class="mp-sort-labels">
+                <span class="mp-sort-label-text">{{#str}}sortby, block_my_progress{{/str}}:</span>
+                <button type="button" class="mp-sort-label mp-sort-active" data-sort="name">
+                    {{#str}}sortname, block_my_progress{{/str}}
+                </button>
+                <button type="button" class="mp-sort-label" data-sort="progress">
+                    {{#str}}sortprogress, block_my_progress{{/str}}
+                </button>
+                <button type="button" class="mp-sort-label" data-sort="enddate">
+                    {{#str}}sortenddate, block_my_progress{{/str}}
+                </button>
+            </div>
+            
+            {{! Collapse All / Expand All Controls }}
+            <div class="mp-toggle-btns">
+                <button type="button" class="mp-toggle-btn" data-action="collapse-all">
+                    <svg class="mp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="4 14 10 14 10 20"/>
+                        <polyline points="20 10 14 10 14 4"/>
+                        <line x1="14" y1="10" x2="21" y2="3"/>
+                        <line x1="3" y1="21" x2="10" y2="14"/>
+                    </svg>
+                    {{#str}}collapseall, block_my_progress{{/str}}
+                </button>
+                <button type="button" class="mp-toggle-btn" data-action="expand-all">
+                    <svg class="mp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 3 21 3 21 9"/>
+                        <polyline points="9 21 3 21 3 15"/>
+                        <line x1="21" y1="3" x2="14" y2="10"/>
+                        <line x1="3" y1="21" x2="10" y2="14"/>
+                    </svg>
+                    {{#str}}expandall, block_my_progress{{/str}}
+                </button>
+            </div>
+        </div>
+
+        {{! Course Categories - Collapsed by default }}
+        <div class="mp-categories">
+            {{#categories}}
+            <div class="mp-category mp-collapsed" data-categoryid="{{categoryid}}">
+                <div class="mp-category-header" role="button" tabindex="0" data-action="toggle-category" aria-expanded="false">
+                    <svg class="mp-category-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                    <span class="mp-category-name">{{categoryname}}</span>
+                    <span class="mp-category-count">{{coursecount}}</span>
+                    <span class="mp-category-indicator {{catstatusclass}}" title="{{catcompleted}} Courses Completed, {{catinprogress}} Courses in Progress, {{catnotstarted}} Courses Not Started">
+                        {{#catallcomplete}}
+                        <svg class="mp-cat-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        {{/catallcomplete}}
+                        {{^catallcomplete}}{{catremaining}}{{/catallcomplete}}
+                    </span>
+                </div>
+
+                <div class="mp-category-content">
+                    <div class="mp-courses">
+                        {{#courses}}
+                        <a href="{{courseurl}}" class="mp-course" data-courseid="{{courseid}}" data-status="{{status}}" data-progress="{{progress}}" data-enddate="{{enddatesort}}">
+                            {{! Course Info + Activity Circles + Progress Bar }}
+                            <div class="mp-course-info">
+                                <p class="mp-course-name">{{coursename}}</p>
+                                <p class="mp-course-meta">
+                                    {{progress}}% {{#str}}completed, block_my_progress{{/str}}
+                                    {{#enroldate}}<span class="mp-date-item"><span class="mp-date-label">{{#str}}startdate, block_my_progress{{/str}}:</span> {{enroldate}}</span>{{/enroldate}}
+                                    {{#iscompleted}}<span class="mp-date-item mp-date-completed"><span class="mp-date-label">{{#str}}completiondate, block_my_progress{{/str}}:</span> {{completeddate}}</span>{{/iscompleted}}
+                                    {{#hasenddate}}<span class="mp-date-item {{#isoverdue}}mp-date-overdue{{/isoverdue}}"><span class="mp-date-label">{{#str}}expirydate, block_my_progress{{/str}}:</span> {{enddate}}</span>{{/hasenddate}}
+                                </p>
+
+                                {{! Activity Circles - inline row }}
+                                {{#hasactivities}}
+                                <div class="mp-activities-inline">
+                                    {{#activities}}
+                                    <span class="mp-activity-dot {{#iscomplete}}mp-dot-complete{{/iscomplete}}{{#isfailed}}mp-dot-failed{{/isfailed}}{{#ispending}}mp-dot-pending{{/ispending}}" title="{{name}}">
+                                        {{#iscomplete}}
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                            <polyline points="20 6 9 17 4 12"/>
+                                        </svg>
+                                        {{/iscomplete}}
+                                        {{#isfailed}}
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                            <line x1="18" y1="6" x2="6" y2="18"/>
+                                            <line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                        {{/isfailed}}
+                                        {{#ispending}}
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                            <circle cx="12" cy="12" r="4"/>
+                                        </svg>
+                                        {{/ispending}}
+                                    </span>
+                                    {{/activities}}
+                                    {{#hasmore}}
+                                    <span class="mp-activity-more">+{{morecount}}</span>
+                                    {{/hasmore}}
+                                </div>
+                                {{/hasactivities}}
+
+                                {{! Progress Bar - inline }}
+                                <div class="mp-progress-bar-inline">
+                                    <div class="mp-progress-bar-track">
+                                        <div class="mp-progress-bar-fill {{statusclass}}" style="width: {{progresswidth}}%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{! Progress Circle }}
+                            <div class="mp-progress-wrapper">
+                                <div class="mp-progress-circle">
+                                    <svg viewBox="0 0 36 36">
+                                        <circle class="mp-progress-bg" cx="18" cy="18" r="15.9155" stroke-width="4"/>
+                                        <circle class="mp-progress-fill {{statusclass}}" cx="18" cy="18" r="15.9155" stroke-width="4" stroke-dasharray="{{progresswidth}}, 100"/>
+                                    </svg>
+                                    <span class="mp-progress-text">{{progress}}%</span>
+                                </div>
+                            </div>
+                        </a>
+                        {{/courses}}
+                    </div>
+                </div>
+            </div>
+            {{/categories}}
+        </div>
+        {{/hascourses}}
+    </div>
+</div>
+
+{{! Hidden activities data for JS expansion }}
+{{#hascourses}}
+<script type="application/json" id="mp-all-activities">
+{
+    {{#categories}}
+    {{#courses}}
+    "{{courseid}}": [
+        {{#allactivities}}
+        {
+            "cmid": {{cmid}},
+            "name": "{{name}}",
+            "modname": "{{modname}}",
+            "iscomplete": {{#iscomplete}}true{{/iscomplete}}{{^iscomplete}}false{{/iscomplete}},
+            "isfailed": {{#isfailed}}true{{/isfailed}}{{^isfailed}}false{{/isfailed}},
+            "ispending": {{#ispending}}true{{/ispending}}{{^ispending}}false{{/ispending}},
+            "url": "{{url}}"
+        }{{^-last}},{{/-last}}
+        {{/allactivities}}
+    ]{{^-last}},{{/-last}}
+    {{/courses}}
+    {{/categories}}
+}
+</script>
+{{/hascourses}}
